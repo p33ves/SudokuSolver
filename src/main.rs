@@ -1,3 +1,4 @@
+use std::cmp::Ordering;
 use std::io;
 
 fn main() {
@@ -9,5 +10,11 @@ fn main() {
         .read_line(&mut input)
         .expect("Failed to read input!");
 
-    println!("Your input was : {}", input);
+    println!("Your input was : {}", input.trim().chars().count());
+
+    match 81.cmp(&input.trim().chars().count()) {
+        Ordering::Less => println!("This seems too long!"),
+        Ordering::Greater => println!("You haven't typed the full puzzle!"),
+        Ordering::Equal => println!("Validating input..."),
+    }
 }
